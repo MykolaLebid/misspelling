@@ -3,6 +3,7 @@
 class Word {
 
 };
+
 TEST(MisspellingCase, KeepOneLetterWord) {
 	Word word;		
 }
