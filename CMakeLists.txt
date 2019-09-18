@@ -56,6 +56,7 @@ target_sources(test_spell
 	PRIVATE
 	test_main.cpp
 	test_misspelling.cpp
+	misspelling.cpp
 	)
 
 target_link_libraries(test_spell
