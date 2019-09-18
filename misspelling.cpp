@@ -62,10 +62,13 @@ std::string Word::code_tail(const std::string str) const {
 	// cut out h and w letters
 	current_str = drop_h_w(current_str);
 	
+	// transform letters to correspondent code 
 	std::string abundant_code_str = abundant_code_string(current_str);
 
+	// filter out the code 
 	std::string filtered_code_str = filtered_code_string(abundant_code_str);
 
+	// zero-pad if needed and cut out code
 	return zero_pad_formatting(filtered_code_str);	
 };
 
