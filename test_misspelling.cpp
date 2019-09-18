@@ -1,47 +1,36 @@
-//#include "gmock/gmock.h"
 #include "gtest/gtest.h"
-#include <unordered_map> // for func abundant_code_letter(..)
+
 #include "misspelling.h"
 
-//class MisspellingCase : 
-TEST(MisspellingCase, KeepOneLetterWord) {
-	Word word;		
-	auto code = word.code("A");
-	ASSERT_EQ(code, "A000");
+class MisspellingCaseFixture : public ::testing::Test {
+	public:
+		Word word;
+};
+
+
+TEST_F(MisspellingCaseFixture, KeepOneLetterWord) {
+	ASSERT_EQ(word.code("A"), "A000");
+}
+
+TEST_F(MisspellingCaseFixture, ZeroWord) {
+	ASSERT_EQ(word.code(""), "");
+}
+
+TEST_F(MisspellingCaseFixture, DifferentVowels) {
+	ASSERT_EQ(word.code("Aaaa"), "A000");
 }
 
 
-
-
-TEST(MisspellingCase, ZeroWord) {
-	Word word;		
-	auto code = word.code("");
-	ASSERT_EQ(code, "");
+TEST_F(MisspellingCaseFixture, OneTailConsonant) {
+	ASSERT_EQ(word.code("Ab"), "A100");
 }
 
-TEST(MisspellingCase, DifferentVowels) {
-	Word word;		
-	auto code = word.code("Aaaa");
-	ASSERT_EQ(code, "A000");
+TEST_F(MisspellingCaseFixture, TwoTailConsonants) {
+	ASSERT_EQ(word.code("Abb"), "A110");
 }
 
-
-TEST(MisspellingCase, OneTailConsonant) {
-	Word word;		
-	auto code = word.code("Ab");
-	ASSERT_EQ(code, "A100");
-}
-
-TEST(MisspellingCase, TwoTailConsonants) {
-	Word word;		
-	auto code = word.code("Abb");
-	ASSERT_EQ(code, "A110");
-}
-
-TEST(MisspellingCase, ThreeTailConsonants) {
-	Word word;		
-	auto code = word.code("Abcd");
-	ASSERT_EQ(code, "A123");
+TEST_F(MisspellingCaseFixture, ThreeTailConsonants) {
+	ASSERT_EQ(word.code("Abcd"), "A123");
 }
 
 
