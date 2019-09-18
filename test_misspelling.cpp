@@ -26,11 +26,22 @@ TEST_F(MisspellingCaseFixture, OneTailConsonant) {
 }
 
 TEST_F(MisspellingCaseFixture, TwoTailConsonants) {
-	ASSERT_EQ(word.code("Abb"), "A110");
+	ASSERT_EQ(word.code("Abb"), "A100");
 }
 
 TEST_F(MisspellingCaseFixture, ThreeTailConsonants) {
 	ASSERT_EQ(word.code("Abcd"), "A123");
 }
 
+TEST_F(MisspellingCaseFixture, ThreeTailConsonantsWithHandW){
+	ASSERT_EQ(word.code("Abhd"), "A130");
+}
+
+TEST_F(MisspellingCaseFixture, ThreeTailConsonantsWithDoubleDigits){
+	ASSERT_EQ(word.code("Abfd"), "A130");		
+}
+
+TEST_F(MisspellingCaseFixture, FourDigits){
+	ASSERT_EQ(word.code("Abfdmr"), "A135");		
+}
 
